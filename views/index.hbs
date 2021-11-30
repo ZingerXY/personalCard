@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Поиск карточки</title>
+	<link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+	<div class="main">
+		<div class='searchForm'>
+			<div class='searchHeader'>Критерии поиска</div>
+			<div class='searchFields'>
+				<div class='searchInput'>
+					<label class='searchLabel' for="startDate">Начальная дата</label>
+					<input class='searchField datepicker' name="startDate" id="startDate" type='date'>
+				</div>
+				<div class='searchInput'>
+					<label class='searchLabel' for="endDate">Конечная дата</label>
+					<input class='searchField datepicker' name="endDate" id="endDate" type='date'>
+				</div>
+				<div class='searchInput'>
+					<label class='searchLabel' for="partName">Часть ФИО</label>
+					<input class="searchField partName" name="partName" id="partName" type='text'>
+				</div>
+			</div>
+			<button class="searchButton">Выполнить поиск</button>
+		</div>
+		<hr>
+		<div class="bottomSearchForm">
+			<div class="countResult">Найдено <span id="countResult">0</span> результатов</div>
+			<a href="/create" class="addCard">Добавить карточку</a>
+		</div>
+		<table class="searchTable">
+			<thead class='searchThead'>
+				<tr>
+					<td>Дата создания</td>
+					<td>ФИО</td>
+					<td>Телефон</td>
+					<td colspan="2">Адрес</td>
+				</tr>
+			</thead>
+			<tbody class='searchResult'>
+				<tr class='searchHint{{#if isActive}} hide{{/if}}'>
+					<td colspan="5"><span class='execSearch'>Выполните поиск</span></td>
+				</tr>
+				{{#if isActive}}
+					<tr data-id="{{card.id}}">
+						<td>{{card.date}}</td>
+						<td>{{card.fullName}}</td>
+						<td>{{card.phone}}</td>
+						<td>{{card.address}}</td>
+						<td class="deleteCell" onclick="deleteCard(this)"></td>
+					</tr>
+				{{/if}}
+			</tbody>
+		</table>
+	</div>
+	<script src='app.js'></script>
+</body>
+
+</html>
